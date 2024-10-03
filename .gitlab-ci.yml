@@ -1,0 +1,25 @@
+# task-export-pipeline-trace is intended to be triggered from another GitLab project as a remote pipeline.
+# The task eports the trace from the specified pipeline to Grafana.
+#
+# The following environment variables are required to be forwarded to this job from the remote invoker.
+#   CI_TRACE_EXPORT_GROUP: <GitLab group for the proect>
+#   CI_TRACE_EXPORT_PROJECT: <GitLab project>
+#   CI_TRACE_EXPORT_PIPELINE:  <The pipeline ID whose trace to export>
+#   CI_TRACE_EXPORT_NOW: "true"
+# Optional
+#   CI_TRACE_EXPORT_DEBUG: "1" | "true"
+#   CI_TRACE_EXPORT_GRPC_ENDPOINT: <Override the production Grafana URL>
+task-export-pipeline-trace:
+  stage: automation
+  image: $CISERV_URL/tci-ubuntu:1.9
+  script:
+    - echo "Exporting pipeline trace"
+    - echo "Group = $CI_TRACE_EXPORT_GROUP"
+    - echo "Project = $CI_TRACE_EXPORT_PROJECT"
+    - echo "Pipeline = $CI_TRACE_EXPORT_PIPELINE"
+    - echo "Endpoint = $CI_TRACE_EXPORT_GRPC_ENDPOINT"
+    - echo "Debug = $CI_TRACE_EXPORT_DEBUG"
+    - export_pipeline_trace cli-args --group "$CI_TRACE_EXPORT_GROUP" --project "$CI_TRACE_EXPORT_PROJECT" --pipeline "$CI_TRACE_EXPORT_PIPELINE" --endpoint console
+    - export_pipeline_trace
+  rules:
+    - if: $CI_TRACE_EXPORT_NOW == "true"

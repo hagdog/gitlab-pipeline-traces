@@ -1,0 +1,89 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.7.8 Chrome/128.0.6613.36 Electron/32.0.1 Safari/537.36" version="24.7.8" pages="2">
+  <diagram name="config file relations" id="7aAy3HpqgdQgeAsYTq3x">
+    <mxGraphModel dx="1123" dy="805" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Ox9YMOP45yj7zbeW6LEQ-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=-0.001;entryY=0.269;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="Ox9YMOP45yj7zbeW6LEQ-1" target="Ox9YMOP45yj7zbeW6LEQ-3" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Ox9YMOP45yj7zbeW6LEQ-1" value="&lt;b&gt;/self/scripts/build-ci-images.sh&lt;/b&gt;&lt;br&gt;Runs docker buildx commands&lt;br&gt;&lt;ul&gt;&lt;li&gt;Docker-specific operations, e.g. tags&lt;br&gt;&lt;/li&gt;&lt;li&gt;Selects *.Dockerfile&lt;/li&gt;&lt;/ul&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="105" y="313" width="260" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="Ox9YMOP45yj7zbeW6LEQ-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="Ox9YMOP45yj7zbeW6LEQ-2" target="Ox9YMOP45yj7zbeW6LEQ-1" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Ox9YMOP45yj7zbeW6LEQ-2" value="&lt;b&gt;.gitlab-ci.yaml&lt;/b&gt;&lt;br&gt;job: create-tci-images -&amp;gt; script: .build_images -&amp;gt; /self/scripts/build-&amp;gt;ci-images.sh" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="10" y="230" width="450" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="Ox9YMOP45yj7zbeW6LEQ-3" value="&lt;b&gt;/docker/*.Dockerfile&lt;/b&gt;&lt;div&gt;&lt;ul&gt;&lt;li&gt;Runs scripts in /docker/scripts&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="475" y="344" width="220" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="Ox9YMOP45yj7zbeW6LEQ-6" value="&lt;b&gt;/docker/scripts/*.sh&lt;/b&gt;&lt;br&gt;&lt;ul&gt;&lt;li&gt;copies files&lt;/li&gt;&lt;li&gt;import depedncies, apt/pip&lt;/li&gt;&lt;/ul&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="547" y="470" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Ox9YMOP45yj7zbeW6LEQ-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.192;entryY=0.008;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="Ox9YMOP45yj7zbeW6LEQ-3" target="Ox9YMOP45yj7zbeW6LEQ-6" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="430" y="440" as="sourcePoint" />
+            <mxPoint x="607" y="469.9999999999998" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Ox9YMOP45yj7zbeW6LEQ-8" value="&lt;b&gt;/scripts/globals.sh&lt;/b&gt;&lt;div&gt;&lt;ul&gt;&lt;li&gt;fundamental hose directory setup, e.g. credentials&lt;/li&gt;&lt;li&gt;sets up environment variables for during builds of Docker images&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="573" y="595" width="410" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Ox9YMOP45yj7zbeW6LEQ-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.021;entryY=0.034;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.17;exitY=1.051;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="Ox9YMOP45yj7zbeW6LEQ-6" target="Ox9YMOP45yj7zbeW6LEQ-8" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Ox9YMOP45yj7zbeW6LEQ-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.724;entryY=-0.015;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1.008;exitY=0.861;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="Ox9YMOP45yj7zbeW6LEQ-2" target="Ox9YMOP45yj7zbeW6LEQ-8" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="selecting-images" id="ceibtn2_A5zzTRjzacD2">
+    <mxGraphModel dx="1882" dy="1233" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="y6qfvvkGKVM5zE9Cxg_C-0" />
+        <mxCell id="y6qfvvkGKVM5zE9Cxg_C-1" parent="y6qfvvkGKVM5zE9Cxg_C-0" />
+        <mxCell id="y6qfvvkGKVM5zE9Cxg_C-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=-0.001;entryY=0.269;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.994;exitY=0.976;exitDx=0;exitDy=0;exitPerimeter=0;" parent="y6qfvvkGKVM5zE9Cxg_C-1" source="y6qfvvkGKVM5zE9Cxg_C-3" target="y6qfvvkGKVM5zE9Cxg_C-6" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y6qfvvkGKVM5zE9Cxg_C-3" value="&lt;b&gt;&lt;font face=&quot;Lucida Console&quot;&gt;/self/scripts/build-ci-images.sh&lt;/font&gt;&lt;/b&gt;&lt;div&gt;&lt;div&gt;&lt;font face=&quot;Lucida Console&quot;&gt;Usage: build-ci-images.sh BUILD_TYPE [-p|--push] [-h|--help]&lt;br&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Lucida Console&quot;&gt;if [ &quot;&lt;b&gt;&lt;font color=&quot;#ff8000&quot;&gt;$BUILD_TYPE&lt;/font&gt;&lt;/b&gt;&quot; = ...&lt;br&gt;&lt;/font&gt;&lt;div&gt;&lt;font face=&quot;Lucida Console&quot;&gt;runner&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Lucida Console&quot;&gt;tci-dind&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Lucida Console&quot;&gt;tci-docker&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Lucida Console&quot;&gt;tci-ubuntu&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Lucida Console&quot;&gt;tci-ubuntu-arm64&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Lucida Console&quot;&gt;tci-ubuntu-arm32&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Lucida Console&quot;&gt;tci-firmware&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Lucida Console&quot;&gt;virtual-robot&lt;/font&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Lucida Console&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Lucida Console&quot;&gt;Values map to Dockerfiles: docker/&lt;b&gt;&lt;font color=&quot;#ff8000&quot;&gt;$BUILD_TYPE&lt;/font&gt;.Dockerfile&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="y6qfvvkGKVM5zE9Cxg_C-1" vertex="1">
+          <mxGeometry x="35" y="485" width="330" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="y6qfvvkGKVM5zE9Cxg_C-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="y6qfvvkGKVM5zE9Cxg_C-1" source="y6qfvvkGKVM5zE9Cxg_C-5" target="y6qfvvkGKVM5zE9Cxg_C-3" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="T-h-0T-M0Q-rEyfTu0g4-0" value="&lt;b&gt;.gttlab-ci.yaml&lt;/b&gt;: &lt;b&gt;&lt;font color=&quot;#ff8000&quot;&gt;TCI_IMAGES&lt;/font&gt;&lt;/b&gt; list elements&lt;br&gt;map to&lt;br&gt;&lt;b&gt;build-ci-images.sh&lt;/b&gt;: &lt;font color=&quot;#ff8000&quot;&gt;&lt;b&gt;BUILD_TYPE&lt;/b&gt;&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="y6qfvvkGKVM5zE9Cxg_C-4" vertex="1" connectable="0">
+          <mxGeometry x="-0.2214" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="y6qfvvkGKVM5zE9Cxg_C-5" value="&lt;b&gt;.gitlab-ci.yaml&lt;/b&gt;&lt;br&gt;&lt;div&gt;&lt;font face=&quot;Lucida Console&quot;&gt;.build-images: &amp;amp;build-images |&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;vh2EwoRCHXFx0uQPuNMZ&quot;&gt;&amp;nbsp; source scripts/globals.sh&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;vh2EwoRCHXFx0uQPuNMZ&quot;&gt;&amp;nbsp; login_ecr&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;vh2EwoRCHXFx0uQPuNMZ&quot;&gt;&amp;nbsp; create_main_builder&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;vh2EwoRCHXFx0uQPuNMZ&quot;&gt;&amp;nbsp; create_aws_creds&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;vh2EwoRCHXFx0uQPuNMZ&quot;&gt;&amp;nbsp; create_gitlab_creds&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;vh2EwoRCHXFx0uQPuNMZ&quot;&gt;&amp;nbsp; for b in &lt;font color=&quot;#ff8000&quot;&gt;&lt;b&gt;$TCI_IMAGES&lt;/b&gt;&lt;/font&gt;; do&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;vh2EwoRCHXFx0uQPuNMZ&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; echo &quot;Building image for $b...&quot;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;vh2EwoRCHXFx0uQPuNMZ&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; ./self/scripts/build-ci-images.sh $b --push&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;vh2EwoRCHXFx0uQPuNMZ&quot;&gt;&amp;nbsp; done&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;vh2EwoRCHXFx0uQPuNMZ&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;vh2EwoRCHXFx0uQPuNMZ&quot;&gt;create-tci-images:&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;vh2EwoRCHXFx0uQPuNMZ&quot;&gt;&amp;nbsp; image: $AWS_ECR_REGISTRY/tci-docker:20.10.16&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;vh2EwoRCHXFx0uQPuNMZ&quot;&gt;&amp;nbsp; stage: automation&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;vh2EwoRCHXFx0uQPuNMZ&quot;&gt;&amp;nbsp; rules:&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;vh2EwoRCHXFx0uQPuNMZ&quot;&gt;&amp;nbsp; &amp;nbsp; - if: $CREATE_TCI_IMAGES == &quot;true&quot;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;vh2EwoRCHXFx0uQPuNMZ&quot;&gt;&amp;nbsp; script:&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;vh2EwoRCHXFx0uQPuNMZ&quot;&gt;&amp;nbsp; &amp;nbsp; - *build-images&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;vh2EwoRCHXFx0uQPuNMZ&quot;&gt;&amp;nbsp; before_script:&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;vh2EwoRCHXFx0uQPuNMZ&quot;&gt;&amp;nbsp; &amp;nbsp; - !reference [.alpine-default-before, script]&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="y6qfvvkGKVM5zE9Cxg_C-1" vertex="1">
+          <mxGeometry x="55" y="10" width="290" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="y6qfvvkGKVM5zE9Cxg_C-6" value="&lt;b&gt;/docker/*.Dockerfile&lt;/b&gt;&lt;div&gt;&lt;ul&gt;&lt;li&gt;Runs scripts in /docker/scripts&lt;br&gt;e.g.&lt;font style=&quot;background-color: initial;&quot; face=&quot;Lucida Console&quot;&gt; tci-ubuntu.Dockerfile&lt;/font&gt;&lt;span style=&quot;background-color: initial;&quot;&gt; runs &lt;/span&gt;&lt;font style=&quot;background-color: initial;&quot; face=&quot;Lucida Console&quot;&gt;docker/scripts/apt_base_install.sh&lt;/font&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="y6qfvvkGKVM5zE9Cxg_C-1" vertex="1">
+          <mxGeometry x="496" y="149" width="380" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="y6qfvvkGKVM5zE9Cxg_C-7" value="&lt;b&gt;/docker/scripts/*.sh&lt;/b&gt;&lt;br&gt;&lt;ul&gt;&lt;li&gt;copies files&lt;/li&gt;&lt;li&gt;import depedncies, apt/pip&lt;/li&gt;&lt;/ul&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="y6qfvvkGKVM5zE9Cxg_C-1" vertex="1">
+          <mxGeometry x="562" y="280" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="y6qfvvkGKVM5zE9Cxg_C-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.192;entryY=0.008;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.273;exitY=1.048;exitDx=0;exitDy=0;exitPerimeter=0;" parent="y6qfvvkGKVM5zE9Cxg_C-1" source="y6qfvvkGKVM5zE9Cxg_C-6" target="y6qfvvkGKVM5zE9Cxg_C-7" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="445" y="250" as="sourcePoint" />
+            <mxPoint x="622" y="279.9999999999998" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="y6qfvvkGKVM5zE9Cxg_C-9" value="&lt;b&gt;/scripts/globals.sh&lt;/b&gt;&lt;div&gt;&lt;ul&gt;&lt;li&gt;fundamental hose directory setup, e.g. credentials&lt;/li&gt;&lt;li&gt;sets up environment variables for during builds of Docker images&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="y6qfvvkGKVM5zE9Cxg_C-1" vertex="1">
+          <mxGeometry x="588" y="405" width="410" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="y6qfvvkGKVM5zE9Cxg_C-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.021;entryY=0.034;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.17;exitY=1.051;exitDx=0;exitDy=0;exitPerimeter=0;" parent="y6qfvvkGKVM5zE9Cxg_C-1" source="y6qfvvkGKVM5zE9Cxg_C-7" target="y6qfvvkGKVM5zE9Cxg_C-9" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="T-h-0T-M0Q-rEyfTu0g4-1" value="&lt;div style=&quot;font-size: 11px;&quot;&gt;&lt;b style=&quot;&quot;&gt;&lt;font style=&quot;font-size: 11px;&quot; face=&quot;Courier New&quot;&gt;Build a test image example:&lt;/font&gt;&lt;/b&gt;&lt;/div&gt;&lt;font style=&quot;font-size: 11px;&quot; face=&quot;UmUFbZq8a4FHbH5T9nU0&quot;&gt;plastron pipeline start --project EportTracesRepo --main-branch feat/add-pipeline-telemetry --host-type main --variable CREATE_TCI_IMAGES=true --variable TCI_IMAGES=&quot;tci-docker tci-ubuntu&quot;&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="y6qfvvkGKVM5zE9Cxg_C-1" vertex="1">
+          <mxGeometry y="740" width="910" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

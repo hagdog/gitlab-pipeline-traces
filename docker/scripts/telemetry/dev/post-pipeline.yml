@@ -1,0 +1,29 @@
+#####
+# Operations performed after a pipeline runs.
+#
+# The intent of the post-pipeline stage is to perform post-pipeline actions such
+# as cleanup or reporting operations related to the pipeline. The export_pipeline_trace
+# job must be the final task run in the post-pipeline stage.
+#
+# Jobs or tasks in this file should use triggers to launch other pipelines.
+# The remote pipeline is linked to the original pipeline in the GUI but is not included
+# the status of the orginal pipeline. For example, if a pipeline passes but
+# the triggered job fails, the original pipeline still reports as being successful.
+#####
+
+# Export a trace of the pipeline to Grafana
+export_pipeline_trace:
+  stage: post-pipeline
+  variables:
+    CI_TRACE_EXPORT_GROUP: "robot"
+    CI_TRACE_EXPORT_PROJECT: "ApplicationRepo"
+    CI_TRACE_EXPORT_PIPELINE: ${CI_PIPELINE_ID}
+    CI_TRACE_EXPORT_NOW: "true"
+  trigger:
+    include:
+      - project: "tools/ExportTracesRepo"
+        ref: "dev"
+        file: "/.gitlab-ci.yml"
+  rules:
+    - if: $EXPORT_PIPELINE_TRACE == "true"
+      when: always
