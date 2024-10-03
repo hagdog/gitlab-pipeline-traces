@@ -1,15 +1,16 @@
-# OVerview
+# Overview
 
 The files in this directory are for use when developing and executing the nearby telemetry code
 and testing with environment variables. See the **Development** section for details.
 
-The directory also provides guidance of how to access the telementry functioinality from other GitLab projects.
+The directory also provides guidance of how to access the telemetry functionality from other GitLab projects.
 Additional information is located in the **Integration** section below
 
 # Development
 
-Below are some sample commands. There is not necessarily a particualr sequence to follow.
-Though, the contents of the virtual environment must always be kept in mind when making updates.
+Below are sample commands. The commands are for reference rather than prescribing the order
+in which they should be run. Rather, commands are used in consideration of the state of
+code in the repository and the state of the virtual Python environment in the shell where the commands are run.
 
 ### Package management
 
@@ -87,4 +88,4 @@ a different repository. The file is located in this repository to demonstrate ho
 repository is accessed from another repository.
 
 The [post-pipeline.yml](docker/scripts/telemetry/dev/post-pipeline.yml) file runs the `export_pipeline_trace`
-job as the last step in a CI pipeline execution. The `export_pipeline_trace` job triggers the remote pipeline run in this repository using the `$EXPORT_PIPELINE_TRACE` variable to trigger a remote pipleine that runs the `task-export-pipeline-trace` job in this repository.
+job as the last step in a CI pipeline execution. The `export_pipeline_trace` job triggers the remote pipeline run in this repository using the `$EXPORT_PIPELINE_TRACE` variable to trigger a remote pipeline that runs the `task-export-pipeline-trace` job in this repository.

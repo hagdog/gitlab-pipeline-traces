@@ -140,9 +140,12 @@ def _parse_args_cli():
         description="Generates and exports traces for a pipeline.",
         epilog="Contact DevOps before sending traces to DevOps-managed Grafana instances.",
     )
-    # A subparser gives us a two-mode command line.
-    # When the subparser is specified argparse handles required args and default values for command line parameters.
-    # Without the subparser no arguments are accepted. The environment must supply parameters.
+    # A subparser gives us a two-mode command line. One mode retrieves parameters from the command line
+    # while the other mode retrieves parametes from the environment. The latter mode is generally used in CI pipelines.
+    #
+    # When the subparser is specified, argparse handles required args and default values for command line parameters.
+    # No arguments are accepted when the subparser in not specified. The environment must supply parameters.
+    # The same usage logic is used in bothe parser modes.
     subparsers = parser.add_subparsers()
     cli_parser = subparsers.add_parser("cli-args")
 
@@ -175,6 +178,11 @@ def _parse_args_cli():
 
 
 def _parse_args_env():
+    required_params = [
+        "group",
+        "project",
+        "pipeline",
+    ]
     supported_params = {
         "group": "CI_TRACE_EXPORT_GROUP",
         "project": "CI_TRACE_EXPORT_PROJECT",
@@ -182,11 +190,6 @@ def _parse_args_env():
         "endpoint": "CI_TRACE_EXPORT_GRPC_ENDPOINT",
         "debug": "CI_TRACE_EXPORT_DEBUG",
     }
-    required_params = [
-        "group",
-        "project",
-        "pipeline",
-    ]
     # A simplistic parser provides a namespace and helps manage errors.
     parser = argparse.ArgumentParser(usage="")
     args = parser.parse_args()
@@ -308,7 +311,7 @@ class ObjectDictNormalizer:
 class JobTraceData(ObjectDictNormalizer):
     """Attributes used by job spans."""
 
-    # Each map item: [<trace label>, <GitLab attribute>, <default value>]
+    # Each map item: [<trace label>, <GitLab API attribute>, <default value>]
     flat_map = [
         ["name", "name", ""],
         ["finished_at", "finished_at", ""],
@@ -320,7 +323,7 @@ class JobTraceData(ObjectDictNormalizer):
         ["status", "status", ""],
         ["web_url", "web_url", ""],
     ]
-    # Each map item: [<trace label>, <GitLab attribute>, <GitLab nested attribute>, <default value>]
+    # Each map item: [<trace label>, <GitLab API attribute>, <GitLab nested attribute>, <default value>]
     two_level_map = [
         ["commit", "commit", "id", ""],
         ["runner_id", "runner", "id", 0],
@@ -552,6 +555,9 @@ class PipelineExporter(GitlabProjectBase):
         except gitlab.exceptions.GitlabError as e:
             raise RuntimeError(f"Cannot retrieve schedules: {e.error_message}")
 
+        # The GitLab API does not include schedules in pipeline objects nor useful lookup functionality.
+        # The recourse is to use a brute force search. Get all schedules for a gitlab project and
+        # locate the pipeline ID in a schedule instance.
         sched_for_pipeline = None
         for schedule in schedules:
             log.debug(f"Processing schedule: {schedule}")
@@ -586,6 +592,7 @@ class PipelineExporter(GitlabProjectBase):
         provider = TracerProvider(resource=resource)
         provider.add_span_processor(processor)
         if not self._have_trace_provider:
+            # The Provider is set once. Avoid logged warnings by not violating the otel module's paradigm.
             trace.set_tracer_provider(provider)
             self._have_trace_provider = True
 
@@ -605,7 +612,7 @@ class PipelineExporter(GitlabProjectBase):
             A Tracer object from the OpenTelemetry API
         """
         if not self._have_trace_provider:
-            # The Provider is set once. Avoid logged warnings by not violating the paradigm.
+            # The Provider is set once. Avoid logged warnings by not violating the otel module's paradigm.
             resource = Resource(attributes=pipeline_resources.attributes)
             trace.set_tracer_provider(TracerProvider(resource=resource))
             self._have_trace_provider = True

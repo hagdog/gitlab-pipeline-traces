@@ -31,7 +31,7 @@ def get_logger(name, level=logging.INFO):
 
     # The first caller of this function initializes
     # logging for this execution space.
-    if not len(log.handlers):
+    if len(log.handlers) > 0:
         logging.basicConfig(level=level, format=format_str)
         formatter = logging.Formatter()
         logging_stdout = logging.StreamHandler(sys.stdout)

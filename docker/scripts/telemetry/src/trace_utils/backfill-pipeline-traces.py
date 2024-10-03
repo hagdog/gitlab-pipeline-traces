@@ -11,7 +11,7 @@ Important: If you  run this script multiple times with using the same
 group, project, and time setting, the data will be duplicated in Grafana.
 While not harmful, per se, visualizations will be inaccurate.
 
-Though this script is only meant to be exeucted in rare circumstances
+Though this script is only meant to be executed in rare circumstances
 using production endpoints, the script has been left here
 as an illustration the usage of trace_utils classes.
 """
